@@ -1,0 +1,69 @@
+<!-- sales-chart.component.html -->
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="!isLoading" echarts [options]="chartOption" class="chart-container" style="width: 600px; height: 400px;"></div>
+<div>
+    <!-- <p>chart works!</p> -->
+<div class="card">
+    <div class="card-body">
+      <div class="card-text">
+        <canvas
+          *ngIf="ready"
+          baseChart
+          height="300"
+          [datasets]="chartData"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [colors]="chartColors"
+          [chartType]="chartType"
+        >
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+ec
+
+<div *ngIf="ready && majorCategoriesByGender" echarts [options]="majorCategoriesByGender"
+    class="cm-bar-chart">
+</div>
+
+<!-- <div *ngIf="ready && chartOption && !isLoading" echarts [options]="chartOption"
+    class="cm-bar-chart">
+</div> -->
+
+<div *ngIf="qisLoading">Loading...</div>
+
+    <div class="mt-4 pt-4">
+    <!-- Task Type Filter -->
+    <label for="taskType">Task Type:</label>
+    <select id="taskType" [(ngModel)]="selectedTaskType" (change)="applyFilters()">
+      <!-- <option value="Program/Project">All</option> -->
+      <option *ngFor="let type of taskTypeOptions" [value]="type">{{ type }}</option>
+    </select>
+  
+    <!-- Status Filter -->
+    <label for="status">Status:</label>
+    <select id="status" [(ngModel)]="selectedStatus" (change)="applyFilters()">
+      <option value="">All</option>
+      <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+
+<div *ngIf="!qisLoading">
+  <div class="card container" style="width: 90%;overflow: scroll;">
+    <div class="card-body">
+      <div class="card-text">
+        <canvas
+          baseChart
+          height="300"
+          [datasets]="qchartData"
+          [labels]="qchartLabels"
+          [options]="qchartOptions"
+          [colors]="qchartColors"
+          [chartType]="qchartType"
+        ></canvas>
+      </div>
+    </div>
+  </div>
+</div>

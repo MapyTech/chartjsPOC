@@ -1,0 +1,113 @@
+<div class="query-builder" style="justify-items: center">
+  <!-- <div class="container text-center p-4" style="width: 80%">
+    <div class="condition-row">
+      <div
+        *ngFor="let condition of conditions; let i = index"
+        class="condition-row"
+      >
+        <select [(ngModel)]="condition.field" class="form-select">
+          <option *ngFor="let field of fields" [value]="field">
+            {{ field }}
+          </option>
+        </select>
+
+        <select [(ngModel)]="condition.operator" class="form-select">
+          <option *ngFor="let op of operators" [value]="op">{{ op }}</option>
+        </select>
+
+        <input
+          [(ngModel)]="condition.value"
+          placeholder="Enter value"
+          class="form-input"
+        />
+
+        <button *ngIf="i == 0" [class.hidden]="i == 0">Remove</button>
+
+        <button *ngIf="i != 0" (click)="removeCondition(i)">Remove</button>
+      </div>
+
+      <button (click)="addCondition()">Add Condition</button>
+
+      <label for="chartType">Chart Type:</label>
+      <select
+        [(ngModel)]="chartType"
+        id="chartType"
+        class="form-select"
+        (change)="updateChartOptions()"
+      >
+        <option *ngFor="let type of chartTypes" [value]="type">
+          {{ type }}
+        </option>
+      </select>
+
+      <button (click)="runQuery()">Run Query</button>
+    </div>
+  </div> -->
+  <div class="container text-center p-4" style="width: 80%">
+    <div class="condition-row">
+      <div>
+        <label for="chartType">Chart Type: </label>
+        <select
+          [(ngModel)]="chartType"
+          id="chartType"
+          class="form-select"
+          (change)="updateChartOptions()"
+        >
+          <option *ngFor="let type of chartTypes" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+      </div>
+
+      <button (click)="runQuery()">Run Query</button>
+    </div>
+  </div>
+  <br />
+
+  <div class="container text-center p-4" style="width: 80%">
+    <div
+      *ngFor="let condition of conditions; let i = index"
+      class="condition-row"
+    >
+      <button (click)="addCondition()">Add Condition</button>
+
+      <select [(ngModel)]="condition.field" class="form-select">
+        <option *ngFor="let field of fields" [value]="field">
+          {{ field }}
+        </option>
+      </select>
+
+      <select [(ngModel)]="condition.operator" class="form-select">
+        <option *ngFor="let op of operators" [value]="op">{{ op }}</option>
+      </select>
+
+      <input
+        [(ngModel)]="condition.value"
+        placeholder="Enter value"
+        class="form-input"
+      />
+
+      <button *ngIf="i == 0" [class.hidden]="i == 0">Remove</button>
+
+      <button *ngIf="i != 0" (click)="removeCondition(i)">Remove</button>
+    </div>
+  </div>
+
+  <br />
+  <div class="container text-center p-4" style="width: 80%">
+    <div class="container text-center p-4" style="width: 100%">
+      <div class="condition-row">
+        <div
+          *ngIf="filteredData.length"
+          echarts
+          [options]="chartOptions"
+          class="chart-container"
+          style="width: 100%; height: 400px"
+        ></div>
+        <div *ngIf="!filteredData.length" class="m-lg-4">
+          <p>No Chart</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
